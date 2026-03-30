@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amy Mittal — Computer Engineer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+    [data-theme="dark"] {
+      --bg: #140f13;
+      --bg2: #1c1520;
+      --bg3: #2a1f30;
+      --border: rgba(255, 255, 255, 0.1);
+      --border-h: rgba(255, 255, 255, 0.22);
+      --text: #f5eaf5;
+      --muted: #c9a8c9;
+      --faint: #8a6a8a;
+      --pink: #f472b6;
+      --pink-dim: #be3a87;
+      --pink-bg: rgba(244, 114, 182, 0.1);
+      --pink-border: rgba(244, 114, 182, 0.3);
+      --lav: #c4b5fd;
+      --lav-dim: #a88fef;
+      --lav-bg: rgba(196, 181, 253, 0.1);
+      --lav-border: rgba(196, 181, 253, 0.25);
+      --teal: #5eead4;
+      --red: #f87171;
+    }
+
+    [data-theme="light"] {
+      --bg: #fdf6fb;
+      --bg2: #f0e4ef;
+      --bg3: #e8d5e8;
+      --border: rgba(0, 0, 0, 0.1);
+      --border-h: rgba(0, 0, 0, 0.2);
+      --text: #1a0a18;
+      --muted: #4a1e48;
+      --faint: #7a4878;
+      --pink: #b0126a;
+      --pink-dim: #8f0050;
+      --pink-bg: rgba(176, 18, 106, 0.07);
+      --pink-border: rgba(176, 18, 106, 0.25);
+      --lav: #4a2fa0;
+      --lav-dim: #6a4fc0;
+      --lav-bg: rgba(74, 47, 160, 0.07);
+      --lav-border: rgba(74, 47, 160, 0.22);
+      --teal: #0a7a64;
+      --red: #b83232;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.5;
+      z-index: 1;
+    }
+
+    /* AVAILABILITY BANNER */
+    .avail-banner {
+      background: var(--pink-bg);
+      border-bottom: 1px solid var(--pink-border);
+      padding: 9px 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--pink);
+      letter-spacing: 0.06em;
+      position: relative;
+      z-index: 499;
+    }
+
+    .ab-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse 2s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.5);
+      }
+
+      50% {
+        box-shadow: 0 0 0 7px rgba(94, 234, 212, 0);
+      }
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(20, 15, 19, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      z-index: 500;
+      transition: background 0.3s;
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(253, 246, 251, 0.97);
+    }
+
+    .nav-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--pink);
+      letter-spacing: 0.06em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--pink);
+    }
+
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 13px;
+      cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--pink-border);
+      color: var(--pink);
+    }
+
+    .wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    section {
+      padding: 6rem 0;
+    }
+
+    section+section {
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* SCROLL FADE */
+    .fu {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fu.vis {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* HERO */
+    #hero {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+
+    .hero-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--pink);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.06em;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: pulse 2.5s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-left {
+      flex: 1;
+    }
+
+    .hero-name {
+      font-family: 'VT323', monospace;
+      font-size: clamp(4.5rem, 12vw, 8.5rem);
+      line-height: 0.88;
+      margin-bottom: 1.1rem;
+      color: var(--text);
+      position: relative;
+      display: inline-block;
+      cursor: default;
+    }
+
+    .hero-name .accent {
+      color: var(--pink);
+    }
+
+    .hero-name.glitch {
+      animation: glitch 0.4s steps(2) forwards;
+    }
+
+    @keyframes glitch {
+      0% {
+        text-shadow: none;
+        transform: translate(0);
+      }
+
+      20% {
+        text-shadow: -3px 0 var(--pink), 3px 0 var(--lav);
+        transform: translate(-2px, 1px);
+      }
+
+      40% {
+        text-shadow: 3px 0 var(--pink), -3px 0 var(--lav);
+        transform: translate(2px, -1px);
+      }
+
+      60% {
+        text-shadow: -2px 0 var(--teal), 2px 0 var(--pink);
+        transform: translate(-1px, 0);
+      }
+
+      80% {
+        text-shadow: 2px 0 var(--lav), -2px 0 var(--teal);
+        transform: translate(1px, 1px);
+      }
+
+      100% {
+        text-shadow: none;
+        transform: translate(0);
+      }
+    }
+
+    .hero-sub {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 2.2rem;
+      letter-spacing: 0.04em;
+      min-height: 22px;
+    }
+
+    .cursor-char {
+      display: inline-block;
+      width: 9px;
+      height: 15px;
+      background: var(--lav);
+      vertical-align: middle;
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    .hero-bio {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-bio strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .hero-bio .aside {
+      display: block;
+      margin-top: 0.9rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--lav-dim);
+      line-height: 1.65;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 11px 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--pink);
+      color: #1a0a15;
+      border: none;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--border-h);
+      color: var(--text);
+    }
+
+    /* AVATAR HOVER */
+    .avatar-wrap {
+      flex-shrink: 0;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .avatar-wrap img {
+      height: 360px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 0 30px rgba(244, 114, 182, 0.45));
+      transition: filter 0.3s, transform 0.3s;
+    }
+
+    .avatar-wrap:hover img {
+      filter: drop-shadow(0 0 55px rgba(244, 114, 182, 0.9)) drop-shadow(0 0 100px rgba(196, 181, 253, 0.55));
+      transform: scale(1.05) translateY(-4px);
+    }
+
+    .avatar-speech {
+      position: absolute;
+      top: -52px;
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--bg2);
+      border: 1px solid var(--pink-border);
+      border-radius: 10px;
+      border-bottom-left-radius: 2px;
+      padding: 9px 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--pink);
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      line-height: 1.6;
+      z-index: 10;
+    }
+
+    .avatar-wrap:hover .avatar-speech {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.95;
+    }
+
+    .about-note {
+      margin-top: 2rem;
+      padding: 1.1rem 1.3rem;
+      border-left: 2px solid var(--lav-border);
+      background: var(--lav-bg);
+      border-radius: 0 6px 6px 0;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--lav-dim);
+      line-height: 1.7;
+    }
+
+    .currently-block {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+
+    .cb-item {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      transition: border-color 0.15s;
+    }
+
+    .cb-item:hover {
+      border-color: var(--pink-border);
+    }
+
+    .cb-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      color: var(--faint);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .cb-val {
+      font-size: 13px;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.45;
+    }
+
+    /* SKILLS */
+    .skill-group {
+      margin-bottom: 1.6rem;
+    }
+
+    .skill-group-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .skill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: var(--bg2);
+      transition: all 0.15s;
+      cursor: default;
+    }
+
+    .pill:hover {
+      border-color: var(--pink-border);
+      color: var(--pink);
+      background: var(--pink-bg);
+    }
+
+    .skill-footnote {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      margin-top: 1.3rem;
+      line-height: 1.65;
+    }
+
+    /* EXPERIENCE */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+      padding: 2rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .exp-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .exp-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.9;
+      padding-top: 2px;
+      font-weight: 600;
+    }
+
+    .exp-date .exp-loc {
+      font-size: 13px;
+      color: var(--muted);
+      display: block;
+      margin-top: 4px;
+    }
+
+    .exp-now {
+      color: var(--teal);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      margin-bottom: 5px;
+      display: block;
+      font-weight: 700;
+    }
+
+    .exp-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .exp-org {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      color: var(--pink);
+      margin-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .exp-quip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--lav-dim);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .exp-bullets li {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.85;
+      padding-left: 20px;
+      position: relative;
+      opacity: 0.88;
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--pink);
+      font-size: 12px;
+      top: 3px;
+    }
+
+    /* PROJECTS */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .proj-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      transition: all 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .proj-card:hover {
+      border-color: var(--pink-border);
+      background: var(--bg3);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(244, 114, 182, 0.08);
+    }
+
+    .proj-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--pink-dim), var(--lav-dim));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .proj-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .proj-num {
+      font-family: 'VT323', monospace;
+      font-size: 56px;
+      color: var(--pink);
+      opacity: 0.18;
+      position: absolute;
+      top: 4px;
+      right: 14px;
+      line-height: 1;
+      pointer-events: none;
+      font-weight: 400;
+    }
+
+    .proj-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      padding-right: 40px;
+    }
+
+    .proj-quip {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--lav-dim);
+      margin-bottom: 12px;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .proj-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .proj-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .proj-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .proj-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      padding: 4px 10px;
+      background: var(--pink-bg);
+      color: var(--pink-dim);
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .proj-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--faint);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .proj-link:hover {
+      color: var(--pink);
+    }
+
+    /* OPINIONS */
+    .opinions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .op-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.3rem 1.4rem;
+      transition: border-color 0.15s;
+    }
+
+    .op-card:hover {
+      border-color: var(--border-h);
+    }
+
+    .op-verdict {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .v-yes {
+      color: var(--teal);
+    }
+
+    .v-no {
+      color: var(--red);
+    }
+
+    .v-mid {
+      color: var(--lav);
+    }
+
+    .op-thing {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .op-reason {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .opinions-disclaimer {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      line-height: 1.6;
+      letter-spacing: 0.04em;
+    }
+
+    /* BLOG */
+    .blog-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.15s;
+      gap: 1rem;
+    }
+
+    .blog-item:hover .blog-title {
+      color: var(--pink);
+    }
+
+    .blog-item:hover .blog-arr {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    .blog-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      transition: color 0.15s;
+      flex: 1;
+    }
+
+    .blog-title em {
+      display: block;
+      font-style: normal;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      margin-top: 4px;
+    }
+
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      padding: 3px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .badge-draft {
+      background: rgba(248, 113, 113, 0.12);
+      color: var(--red);
+    }
+
+    .badge-soon {
+      background: var(--lav-bg);
+      color: var(--lav-dim);
+    }
+
+    .badge-live {
+      background: rgba(94, 234, 212, 0.1);
+      color: var(--teal);
+    }
+
+    .blog-arr {
+      color: var(--pink);
+      font-size: 14px;
+      opacity: 0;
+      transition: all 0.15s;
+    }
+
+    /* CONTACT */
+    .contact-intro {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    .contact-intro strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg2);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-decoration: none;
+    }
+
+    .contact-card:hover {
+      border-color: var(--pink-border);
+      background: var(--pink-bg);
+    }
+
+    .cc-icon {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      color: var(--pink);
+      width: 22px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .cc-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      color: var(--faint);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .cc-value {
+      font-size: 13px;
+      color: var(--text);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .terminal-footer {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.3rem 1.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      line-height: 2.2;
+    }
+
+    .tf-prompt {
+      color: var(--pink);
+      margin-right: 6px;
+    }
+
+    .tf-cmd {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .tf-out {
+      color: var(--muted);
+      padding-left: 18px;
+      font-size: 11px;
+    }
+
+    .tf-err {
+      color: var(--red);
+      padding-left: 18px;
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    footer {
+      padding: 1.8rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      color: var(--faint);
+      letter-spacing: 0.08em;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .vc-num {
+      color: var(--pink);
+      font-weight: 700;
+    }
+
+    @media(max-width:700px) {
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .currently-block {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links li:not(:last-child) {
+        display: none;
+      }
+
+      .wrap {
+        padding: 0 1.4rem;
+      }
+
+      section {
+        padding: 3.5rem 0;
+      }
+
+      .hero-top {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .avatar-speech {
+        left: -120px;
+        font-size: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="particles"></canvas>
+
+  <div class="avail-banner">
+    <div class="ab-dot"></div>
+    available for summer 2026 internships &amp; co-ops · open to relocation
+  </div>
+
+  <nav>
+    <div class="nav-logo">amy_mittal.exe</div>
+    <ul class="nav-links">
+      <li><a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">about</a></li>
+      <li><a onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">skills</a></li>
+      <li><a onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">exp</a></li>
+      <li><a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">projects</a></li>
+
+      <li><a onclick="document.getElementById('blog').scrollIntoView({behavior:'smooth'})">blog</a></li>
+      <li><a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">contact</a></li>
+      <li><button class="theme-btn" onclick="window.toggleTheme()" id="themeBtn">☀ light</button></li>
+    </ul>
+  </nav>
+
+  <section id="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow fu">
+        <div class="dot"></div>seeking summer 2026 internship · canada
+      </div>
+      <div class="hero-top">
+        <div class="hero-left">
+          <h1 class="hero-name fu" id="heroName">AMY<br><span class="accent">MITTAL</span></h1>
+          <div class="hero-sub fu"><span id="typed"></span><span class="cursor-char"></span></div>
+          <p class="hero-bio fu">
+            I'm a <strong>Computer Engineering student at the University of Waterloo.</strong> I think firmware is where
+            the real fun is, and V2X communication is criminally underrated.
+            <br><br>
+            I've written embedded systems code, shipped trade floor tooling used by 500+ traders, built JavaScript
+            systems for lawyers, and worked on connected vehicle systems at a California regulatory competition.
+            <span class="aside">// currently: automation software lead @ UW Alternate Fuels Team · building ACC + V2X
+              systems from the ground up.</span>
+          </p>
+          <div class="hero-cta fu">
+            <a class="btn btn-primary"
+              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">get in touch ↗</a>
+            <a class="btn btn-ghost"
+              onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">view experience</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/amy-mittal-2b3199190/"
+              target="_blank">linkedin</a>
+          </div>
+          <div class="fu" style="margin-top: 1.5rem;">
+            <a href="carb.html" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
+              <span class="badge badge-live" style="font-size:10px;">new post</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--pink);">What CARB taught
+                me: Field notes from Riverside →</span>
+            </a>
+          </div>
+        </div>
+        <div class="avatar-wrap fu">
+          <div class="avatar-speech">// available for summer 2026 — let's build something real.</div>
+          <img src="amy.png" alt="Amy Mittal">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-label fu">01 — skills</div>
+      <div class="skill-group fu">
+        <div class="skill-group-label">languages i speak (to computers)</div>
+        <div class="skill-row">
+          <span class="pill">Python</span><span class="pill">C</span><span class="pill">C++</span><span
+            class="pill">C#</span><span class="pill">Java</span><span class="pill">JavaScript</span><span
+            class="pill">SQL</span><span class="pill">HTML & CSS</span><span class="pill">MATLAB</span><span
+            class="pill">Bash</span>
+        </div>
+      </div>
+      <div class="skill-group fu">
+        <div class="skill-group-label">tools & frameworks</div>
+        <div class="skill-row">
+          <span class="pill">Simulink</span><span class="pill">React.js</span><span class="pill">PyTorch</span><span
+            class="pill">TensorFlow</span><span class="pill">Raspberry Pi</span><span class="pill">KiCad</span><span
+            class="pill">PlatformIO</span><span class="pill">Cohda SDK</span><span class="pill">RTMaps</span><span
+            class="pill">Flask</span><span class="pill">Unity3D</span><span class="pill">Git</span><span
+            class="pill">Bootstrap</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-label fu">02 — projects</div>
+      <div class="proj-grid">
+
+        <div class="proj-card fu">
+          <div class="proj-num">01</div>
+          <div class="proj-title">Secure Surveillance System</div>
+          <div class="proj-quip">// because why buy a ring doorbell when you can build one</div>
+          <div class="proj-desc">Raspberry Pi + PIR sensor + camera for real-time motion detection. Remote access over
+            local network via Flask and secure protocols.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">Raspberry Pi</span><span
+                class="proj-tag">Flask</span><span class="proj-tag">GPIO</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card fu">
+          <div class="proj-num">02</div>
+          <div class="proj-title">Spam Email Classifier</div>
+          <div class="proj-quip">// trained it on my actual inbox. it has opinions.</div>
+          <div class="proj-desc">Multinomial Naive Bayes classifier with Scikit-Learn. Full EDA pipeline, data
+            preprocessing, and Matplotlib/Seaborn visualisations.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="proj-tag">Python</span><span class="proj-tag">NLP</span><span
+                class="proj-tag">Scikit-Learn</span><span class="proj-tag">Jupyter</span></div><a class="proj-link"
+              href="https://github.com/amy-mittal/Spam-Classifier" target="_blank">↗ github</a>
+          </div>
+        </div>
+
+        <div class="proj-card fu">
+          <div class="proj-num">03</div>
+          <div class="proj-title">Embedded Weather Station</div>
+          <div class="proj-quip">// the Nucleo board did not enjoy being debugged. we persevered.</div>
+          <div class="proj-desc">STM32 Nucleo + MPL3115A2 sensor + 8-bit I/O expander logging temp and pressure to a
+            20×4 LCD. Written in C with PlatformIO.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="proj-tag">C</span><span class="proj-tag">STM32</span><span
+                class="proj-tag">PlatformIO</span><span class="proj-tag">Embedded</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card fu">
+          <div class="proj-num">04</div>
+          <div class="proj-title">Space Escape Game</div>
+          <div class="proj-quip">// a 3D space shooter. yes, i designed the assets too.</div>
+          <div class="proj-desc">3D space shooter in Unity3D with enemy AI, weapon mechanics, and collision detection.
+            Designed and optimised all 3D models, textures, and sound effects.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="proj-tag">C#</span><span class="proj-tag">Unity3D</span><span
+                class="proj-tag">3D Modelling</span><span class="proj-tag">Audio</span></div><a class="proj-link"
+              href="https://github.com/amy-mittal/Planet-Escape-Game" target="_blank">↗ github</a>
+          </div>
+        </div>
+
+        <div class="proj-card fu">
+          <div class="proj-num">05</div>
+          <div class="proj-title">Trader Search Tool</div>
+          <div class="proj-quip">// internal tooling i built at scotiabank. SQL at 9am is a lifestyle.</div>
+          <div class="proj-desc">Internal Scotiabank tool to search traders by name, email, or phone. SQL-backed with
+            bulk search generating multiple result tables at once — replaced a slow manual process.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="proj-tag">C#</span><span class="proj-tag">JavaScript</span><span
+                class="proj-tag">SQL</span><span class="proj-tag">HTML/CSS</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card fu">
+          <div class="proj-num">06</div>
+          <div class="proj-title">Minesweeper</div>
+          <div class="proj-quip">// bitwise operators to store game state. as the game gods intended.</div>
+          <div class="proj-desc">Full Minesweeper in C++ using OOP. Board stored in an array with bitwise operators
+            managing all game state. Interactive terminal UI.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="proj-tag">C++</span><span class="proj-tag">OOP</span><span
+                class="proj-tag">Bitwise ops</span></div>
+          </div>
+        </div>
+
+        <div class="proj-card fu">
+          <div class="proj-num">07</div>
+          <div class="proj-title">Obstacle Course Game</div>
+          <div class="proj-quip">// unity again. i have a type.</div>
+          <div class="proj-desc">Obstacle course game in Unity3D with player controls, collision detection, and scoring.
+            Integrated third-party assets for visual polish.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="proj-tag">C#</span><span class="proj-tag">Unity3D</span><span
+                class="proj-tag">Game Physics</span></div><a class="proj-link"
+              href="https://github.com/amy-mittal/Obstacle-Course-Game" target="_blank">↗ github</a>
+          </div>
+        </div>
+
+        <div class="proj-card fu">
+          <div class="proj-num">08</div>
+          <div class="proj-title">TicTacToe Web App</div>
+          <div class="proj-quip">// everyone's first web project. mine had highlighted tiles and zero regrets.</div>
+          <div class="proj-desc">Classic TicTacToe as a responsive web app. Two-player GUI with interactive buttons,
+            highlighted tiles, and JS-driven game logic.</div>
+          <div class="proj-footer">
+            <div class="proj-tags"><span class="proj-tag">JavaScript</span><span class="proj-tag">HTML/CSS</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-label fu">03 — experience</div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <div class="exp-item fu">
+          <div class="exp-date"><span class="exp-now">◉ NOW</span>05/2025 – present<span class="exp-loc">Waterloo,
+              ON</span></div>
+          <div>
+            <div class="exp-title">Automation Undergrad Lead — SWE</div>
+            <div class="exp-org">UW Alternate Fuels Team</div>
+            <div class="exp-quip">// the one where i make cars do things autonomously</div>
+            <ul class="exp-bullets">
+              <li>Built Adaptive Cruise Control in Simulink + Python using MPC and state-feedback control. Yes, I had to
+                learn MPC first. No, I will not be taking questions about the learning curve.</li>
+              <li>Integrated Cohda MK6 OBU/RSU units for V2X comms — then documented the whole thing so nobody else
+                suffers PCAP log debugging alone.</li>
+              <li>Designed an Autonomous Intersection Negotiation module computing stop/go trajectories from signal
+                phase, time-to-red, and braking constraints.</li>
+              <li>Represented the team at CARB competition in California for vehicle compliance validation and
+                regulatory testing.</li>
+              <li>Co-designed Lights & Switches PCB — schematic capture, layout, and firmware integration with vehicle
+                subsystems.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fu">
+          <div class="exp-date">09/2022 – 12/2022<span class="exp-loc">Toronto, ON</span></div>
+          <div>
+            <div class="exp-title">Trade Floor Technology Consultant</div>
+            <div class="exp-org">Scotiabank</div>
+            <div class="exp-quip">// 500 traders, 1 me, infinite switch deployments</div>
+            <ul class="exp-bullets">
+              <li>Supported 500+ traders across Canadian and international offices — learned quickly that "market hours"
+                means "do not mess this up."</li>
+              <li>Self-managed deployment of hundreds of business-critical switch rollouts across the trade floor. With
+                a spreadsheet.</li>
+              <li>Built internal web tools for Global Banking and Markets Tech in C#, JS, HTML, CSS, and SQL to automate
+                trade floor processes.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fu">
+          <div class="exp-date">01/2022 – 04/2022<span class="exp-loc">Montreal, QC</span></div>
+          <div>
+            <div class="exp-title">Junior JavaScript Developer</div>
+            <div class="exp-org">Estateably</div>
+            <div class="exp-quip">// yes, i wrote JavaScript for probate law.</div>
+            <ul class="exp-bullets">
+              <li>Wrote JS logic across 30+ court forms to pull data from the app and handle jurisdiction-specific edge
+                cases.</li>
+              <li>Made UX decisions for lawyer-facing form generation — turns out lawyers have Very Strong Opinions
+                about dropdown order.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item fu">
+          <div class="exp-date">01/2020 – 04/2020<span class="exp-loc">Winnipeg, MB</span></div>
+          <div>
+            <div class="exp-title">Technology Intern</div>
+            <div class="exp-org">Tactica Interactive</div>
+            <ul class="exp-bullets">
+              <li>Built a tourism web app for Manitoba landmarks with EN/FR locale support using ReactJS.</li>
+              <li>Learned Git properly. Shadowed a PM. Survived a 50-person open-plan office.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="blog">
+    <div class="wrap">
+      <div class="section-label fu">04 — blog</div>
+      <p class="fu" style="font-size:15px;color:var(--muted);line-height:1.9;margin-bottom:2rem;max-width:500px;">
+        Honest, specific, and occasionally opinionated.</p>
+      <div class="fu">
+        <div class="blog-item" onclick="window.location='carb.html'">
+          <span class="blog-title">What CARB taught me — field notes from Riverside, California<em>// connected
+              vehicles, compliance testing, and a rock climbing gym</em></span>
+          <div class="blog-meta"><span class="badge badge-live">published</span><span class="blog-arr">→</span></div>
+        </div>
+
+        <div class="blog-item">
+          <span class="blog-title">MPC vs PID: a biased comparison by someone who implemented both<em>// spoiler: i have
+              a preference</em></span>
+          <div class="blog-meta"><span class="badge badge-draft">drafting</span><span class="blog-arr">→</span></div>
+        </div>
+
+        <div class="blog-item">
+          <span class="blog-title">What designing a software challenge for a hackathon taught me<em>// building for the
+              builders: scoping, edge cases, and documentation</em></span>
+          <div class="blog-meta"><span class="badge badge-soon">coming soon</span><span class="blog-arr">→</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-label fu">05 — contact</div>
+      <p class="contact-intro fu">Looking for a <strong>summer 2026 internship or co-op</strong> in firmware, embedded
+        systems, or full-stack — I'm excited to contribute to a team working on real, meaningful
+        problems.<br><br>Hiring? Have something cool you're building? Just want to connect? I'd love to hear from you.
+      </p>
+      <div class="contact-grid fu">
+        <div class="contact-card" onclick="window.open('mailto:amy.mittal@uwaterloo.ca')">
+          <div class="cc-icon">@</div>
+          <div>
+            <div class="cc-label">email</div>
+            <div class="cc-value">amy.mittal&#64;uwaterloo.ca</div>
+          </div>
+        </div>
+        <div class="contact-card" onclick="window.open('https://www.linkedin.com/in/amy-mittal-2b3199190/')">
+          <div class="cc-icon">in</div>
+          <div>
+            <div class="cc-label">linkedin</div>
+            <div class="cc-value">amy-mittal</div>
+          </div>
+        </div>
+        <div class="contact-card" onclick="window.open('https://github.com/amy-mittal')">
+          <div class="cc-icon">{}</div>
+          <div>
+            <div class="cc-label">github</div>
+            <div class="cc-value">amy-mittal</div>
+          </div>
+        </div>
+      </div>
+      <div class="terminal-footer fu">
+        <div><span class="tf-prompt">$</span><span class="tf-cmd">./contact --reason "i have a role for you"</span>
+        </div>
+        <div class="tf-out">→ yes please. include team + stack in the subject line.</div>
+        <div style="margin-top:4px;"><span class="tf-prompt">$</span><span class="tf-cmd">./contact --reason "let's talk
+            firmware"</span></div>
+        <div class="tf-out">→ always happy to chat — firmware, embedded systems, whatever.</div>
+        <div style="margin-top:4px;"><span class="tf-prompt">$</span><span class="tf-cmd">./contact --reason "just want
+            to connect"</span></div>
+        <div class="tf-out">→ also welcome. let's talk.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 amy mittal · built with caffeine and spite</span>
+    <span>👾 visited by <span class="vc-num" id="vcNum">—</span> engineers</span>
+  </footer>
+
+  <script>
+    window.toggleTheme = function () {
+      const html = document.documentElement;
+      const dark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', dark ? 'light' : 'dark');
+      document.getElementById('themeBtn').textContent = dark ? '☽ dark' : '☀ light';
+    };
+
+    // VISITOR COUNTER
+    (function () {
+      let count = parseInt(localStorage.getItem('vc') || '0');
+      if (!sessionStorage.getItem('visited')) { count++; localStorage.setItem('vc', count); sessionStorage.setItem('visited', '1'); }
+      document.getElementById('vcNum').textContent = count + 142;
+    })();
+
+    // PARTICLES — more pronounced
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let W, H, mouse = { x: -999, y: -999 };
+    function isDark() { return document.documentElement.getAttribute('data-theme') === 'dark'; }
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    const NUM = 55;
+    const pts = Array.from({ length: NUM }, () => ({
+      x: Math.random() * 1600, y: Math.random() * 900,
+      vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28,
+      r: Math.random() * 1.8 + 0.6,
+      ci: Math.floor(Math.random() * 3),
+      o: Math.random() * 0.3 + 0.15
+    }));
+    const DC = ['rgba(244,114,182,', 'rgba(196,181,253,', 'rgba(94,234,212,'];
+    const LC = ['rgba(176,18,106,', 'rgba(74,47,160,', 'rgba(10,122,100,'];
+    function drawParticles() {
+      ctx.clearRect(0, 0, W, H);
+      const C = isDark() ? DC : LC;
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = W; if (p.x > W) p.x = 0; if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+        const dx = p.x - mouse.x, dy = p.y - mouse.y, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 120) { p.x += dx / d * 0.9; p.y += dy / d * 0.9; }
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = C[p.ci] + (isDark() ? p.o : p.o * 0.5) + ')'; ctx.fill();
+      });
+      pts.forEach((a, i) => {
+        for (let j = i + 1; j < NUM; j++) {
+          const b = pts[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+          if (d < 115) {
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+            const alpha = (isDark() ? 0.1 : 0.04) * (1 - d / 130);
+            ctx.strokeStyle = `rgba(244,114,182,${alpha})`; ctx.lineWidth = 0.6; ctx.stroke();
+          }
+        }
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // TYPED TEXT
+    const phrases = ['computer engineer · chronic over-builder', 'firmware enjoyer · embedded systems nerd', 'PCB designer · V2X wrangler', 'professional PCAP log reader'];
+    let pi = 0, ci = 0, deleting = false;
+    const typed = document.getElementById('typed');
+    function typeLoop() {
+      const phrase = phrases[pi];
+      if (!deleting) { typed.textContent = phrase.slice(0, ++ci); if (ci === phrase.length) { deleting = true; setTimeout(typeLoop, 2200); return; } }
+      else { typed.textContent = phrase.slice(0, --ci); if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; } }
+      setTimeout(typeLoop, deleting ? 38 : 72);
+    }
+    typeLoop();
+
+    // GLITCH
+    document.getElementById('heroName').addEventListener('mouseenter', function () {
+      this.classList.add('glitch'); setTimeout(() => this.classList.remove('glitch'), 400);
+    });
+
+    // SCROLL FADE
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.fu').forEach(el => io.observe(el));
+    }));
+  </script>
+</body>
+
+</html>

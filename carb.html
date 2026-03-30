@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What CARB Taught Me — Amy Mittal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&family=IBM+Plex+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+    [data-theme="dark"] {
+      --bg: #140f13;
+      --bg2: #1c1520;
+      --bg3: #231a28;
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #f0e4f0;
+      --muted: #c9a8c9;
+      --faint: #7a5a7a;
+      --pink: #f472b6;
+      --pink-dim: #be3a87;
+      --pink-bg: rgba(244, 114, 182, 0.08);
+      --pink-border: rgba(244, 114, 182, 0.25);
+      --lav: #c4b5fd;
+      --lav-dim: #a88fef;
+      --lav-bg: rgba(196, 181, 253, 0.08);
+      --lav-border: rgba(196, 181, 253, 0.22);
+      --teal: #5eead4;
+    }
+
+    [data-theme="light"] {
+      --bg: #fdf6fb;
+      --bg2: #f0e4ef;
+      --bg3: #e8d5e8;
+      --border: rgba(0, 0, 0, 0.09);
+      --text: #1a0a18;
+      --muted: #4a1e48;
+      --faint: #8a5888;
+      --pink: #b0126a;
+      --pink-dim: #8f0050;
+      --pink-bg: rgba(176, 18, 106, 0.07);
+      --pink-border: rgba(176, 18, 106, 0.25);
+      --lav: #4a2fa0;
+      --lav-dim: #6a4fc0;
+      --lav-bg: rgba(74, 47, 160, 0.07);
+      --lav-border: rgba(74, 47, 160, 0.22);
+      --teal: #0a7a64;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(20, 15, 19, 0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      z-index: 100;
+      transition: background 0.3s;
+    }
+
+    [data-theme="light"] nav {
+      background: rgba(253, 246, 251, 0.97);
+    }
+
+    .nav-logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--pink);
+      letter-spacing: 0.06em;
+      text-decoration: none;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .back-link {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover {
+      color: var(--pink);
+    }
+
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 13px;
+      cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      transition: all 0.15s;
+    }
+
+    .theme-btn:hover {
+      border-color: var(--pink-border);
+      color: var(--pink);
+    }
+
+    /* LAYOUT */
+    .post-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 6rem;
+    }
+
+    /* HEADER */
+    .post-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .post-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--pink);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .post-title {
+      font-family: 'VT323', monospace;
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      color: var(--text);
+      line-height: 0.95;
+      margin-bottom: 1.2rem;
+    }
+
+    .post-title .accent {
+      color: var(--pink);
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      flex-wrap: wrap;
+    }
+
+    .post-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* DIVIDER */
+    .post-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2.5rem 0;
+    }
+
+    /* BODY TEXT */
+    .post-body {
+      font-size: 17px;
+      line-height: 1.95;
+      color: var(--muted);
+    }
+
+    .post-body p {
+      margin-bottom: 1.6rem;
+    }
+
+    .post-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .post-body strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .post-body em {
+      color: var(--lav-dim);
+      font-style: normal;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+    }
+
+    /* SECTION HEADING inside post */
+    .post-h2 {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      color: var(--pink);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin: 3rem 0 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .post-h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--pink-border);
+    }
+
+    /* PULLQUOTE */
+    .pullquote {
+      border-left: 3px solid var(--pink);
+      padding: 1rem 1.5rem;
+      margin: 2.5rem 0;
+      background: var(--pink-bg);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .pullquote p {
+      font-size: 18px;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* PHOTOS */
+    .photo-block {
+      margin: 2.8rem 0;
+    }
+
+    .photo-block img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid var(--border);
+    }
+
+    .photo-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      margin-top: 10px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 2.8rem 0;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid var(--border);
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .photo-grid-caption {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--faint);
+      margin-top: 10px;
+      line-height: 1.5;
+      text-align: center;
+      grid-column: 1/-1;
+    }
+
+    /* INLINE COMMENT */
+    .inline-comment {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--lav-dim);
+      display: block;
+      margin: 1.5rem 0;
+      line-height: 1.65;
+      padding-left: 1rem;
+      border-left: 2px solid var(--lav-border);
+    }
+
+    /* FOOTER NAV */
+    .post-footer {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .post-footer a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.15s;
+    }
+
+    .post-footer a:hover {
+      color: var(--pink);
+    }
+
+    @media(max-width:600px) {
+      .post-wrap {
+        padding: 2.5rem 1.3rem 4rem;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .photo-grid img {
+        height: 220px;
+      }
+
+      nav {
+        padding: 0 1.3rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">amy_mittal.exe</a>
+    <div class="nav-right">
+      <a class="back-link" href="index.html">← back to portfolio</a>
+      <button class="theme-btn" onclick="window.toggleTheme()" id="themeBtn">☀ light</button>
+    </div>
+  </nav>
+
+  <div class="post-wrap">
+
+    <header class="post-header">
+      <span class="post-tag">blog · field notes</span>
+      <h1 class="post-title">What <span class="accent">CARB</span><br>Taught Me</h1>
+      <div class="post-meta">
+        <span>Feb 1–5, 2026</span>
+        <span>·</span>
+        <span>Riverside, California</span>
+        <span>·</span>
+        <span>Amy Mittal</span>
+      </div>
+    </header>
+
+    <div class="post-divider"></div>
+
+    <div class="post-body">
+
+      <p>Travelling to the California Air Resources Board (CARB) facility in Riverside with the University of Waterloo
+        EcoCAR Team (UWAFT) was one of the highlights of my year. Arriving at a professional testing environment —
+        surrounded by other universities, industry engineers, and EcoCAR leadership — made everything we had been
+        quietly building feel very real. I was there to learn, observe, and help out wherever I could. I left with more
+        than I expected.</p>
+
+      <div class="photo-block">
+        <img src="everyone_carb.jpeg" alt="All EcoCAR teams at CARB" loading="lazy">
+        <div class="photo-caption">All competing university teams at the CARB facility — Riverside, CA, February 2026.
+        </div>
+      </div>
+
+      <div class="post-h2">the facility</div>
+
+      <p>CARB is not a student lab. It is where real vehicles get evaluated for real emissions compliance. Walking in as
+        part of a student team competing in the EcoCAR EV Challenge makes you immediately feel the weight and legitimacy
+        of what everyone has been building throughout the year. Calibration runs, emissions evaluations, design reviews,
+        presentations to industry reps — the full picture of what it actually takes to bring a vehicle to compliance.
+      </p>
+
+      <div class="pullquote">
+        <p>Seeing how other teams approached CAV integration was genuinely valuable. It gave our subteam a clearer sense
+          of what we are building toward for finals.</p>
+      </div>
+
+      <div class="post-h2">where we were</div>
+
+      <p>As the <strong>Connected and Automated Vehicle (CAV) Undergraduate Lead</strong>, my work throughout the year
+        has centred on developing advanced driver assistance and connected vehicle features for our Cadillac LYRIQ
+        competition vehicle: Adaptive Cruise Control (ACC), Cooperative Adaptive Cruise Control (CACC), Lane Centering
+        Control (LCC), and Automatic Intersection Navigation (AIN). Beyond the technical side, the role also means
+        leading undergraduate members, coordinating project direction, and helping integrate our CAV systems with the
+        rest of the vehicle stack — which involves a lot more cross-team communication than you might expect going in.
+      </p>
+
+      <p>This year, our CAV subteam was not competing in the CAV testing events at CARB. We hit a cybersecurity blocker
+        that kept our systems out of the eligible build for this phase. It was frustrating, especially watching other
+        university teams demo their CAV features on the floor.</p>
+
+      <span class="inline-comment">// missing a milestone stings. but attending anyway gave me a wider view of the
+        EcoCAR process than I would have gotten from behind a laptop.</span>
+
+      <div class="photo-block">
+        <img src="carb_team_pic.jpeg" alt="UWAFT team at CARB" loading="lazy">
+        <div class="photo-caption">Part of the UWAFT crew at the CARB facility.</div>
+      </div>
+
+      <div class="post-h2">what I took away</div>
+
+      <p>One of the most concrete things CARB reinforced was how much every subsystem in a project like EcoCAR depends
+        on every other one. Propulsion, controls, perception, software — none of it works in isolation. The teams
+        communicating well across subteams showed it clearly. That is something I am carrying back into how I approach
+        coordination within our own group.</p>
+
+      <p>Seeing the gap between where we were and where the leading CAV teams were was also useful in a way that is hard
+        to get from reading documentation or watching demos. There is a difference between knowing what needs to be done
+        and seeing what done actually looks like. CARB made that concrete for me.</p>
+
+      <div class="post-h2">the other part</div>
+
+      <p>One evening, members from all the competing teams headed out to a rock climbing gym together. A surprisingly
+        wholesome cross-university social that I did not expect to be a highlight of the week. There is something about
+        struggling up the same wall as someone you just met that fast-tracks a friendship. By the end of the night, we
+        were cheering on people from schools we had been competing against all day.</p>
+
+      <div class="photo-block">
+        <img src="rock_climbing_Carb.jpg" alt="Rock climbing with EcoCAR teams" loading="lazy"
+          style="max-height:520px;object-fit:cover;object-position:center;">
+        <div class="photo-caption">Cross-university team building. The wall does not care which school you go to.</div>
+      </div>
+
+      <p>That is the part nobody puts in the technical report. Design teams can be intense — late nights, debugging
+        sessions, tight deadlines — and it is easy to lose sight of the people behind the work. Travelling together,
+        sharing meals, and celebrating how far we have come as a group was a good reminder of why the team environment
+        matters as much as the technical output.</p>
+
+      <div class="post-h2">looking ahead</div>
+
+      <p>With our final EcoCAR competition coming up in May, the CARB trip felt like both a checkpoint and a launch pad.
+        For our CAV subteam especially, it sharpened exactly what we need to get across the line — and we have a much
+        clearer picture of the bar we are building toward.</p>
+
+      <p><strong>Onwards to May.</strong></p>
+
+    </div>
+
+    <div class="post-footer">
+      <a href="index.html">← back to portfolio</a>
+      <a href="mailto:amy.mittal&#64;uwaterloo.ca">amy.mittal&#64;uwaterloo.ca</a>
+    </div>
+
+  </div>
+
+  <script>
+    window.toggleTheme = function () {
+      const html = document.documentElement;
+      const dark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', dark ? 'light' : 'dark');
+      document.getElementById('themeBtn').textContent = dark ? '☽ dark' : '☀ light';
+    };
+  </script>
+</body>
+
+</html>
